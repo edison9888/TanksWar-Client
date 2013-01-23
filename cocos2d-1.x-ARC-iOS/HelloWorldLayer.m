@@ -137,9 +137,7 @@
                                             nil];
                     [p requestWithRoute:@"connector.entryHandler.enter" andParams:params andCallback:^(NSDictionary *result){
                         NSArray *userList = [result objectForKey:@"users"];
-                        for (NSString *name1 in userList) {
-                            NSLog(@"%@",name1);
-                            //只是为了看一下该频道里有多少人，没啥用 可与去掉
+                       
                             
                             
                             NSDictionary *params2 = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -151,7 +149,7 @@
                                 resources = [responseData objectForKey:@"Resources"];
                                 
                                 int count = [resources count];
-                                
+                                NSLog(@"count:%d",count);
                                 for (int i=0; i<count; i++) {
                                     
                                     NSLog(@"chenyl1");
@@ -164,10 +162,11 @@
                                     
                                     for (CCSprite *sprite in tagSprites)
                                     {
-                                        if(fabs([sprite position].x - thep.x)<1.0)
+//                                        if(fabs([sprite position].x - thep.x)<1.0)
+//                                        {
+                                        if( ([sprite position].x == thep.x) &&([sprite position].y == thep.y))
                                         {
-                                            
-                                            
+                                           
                                             
                                             self.isTouchEnabled=YES;
                                             
@@ -178,6 +177,7 @@
                                             Build.position=thep;
                                             Build.tag = [resid intValue];
                                            [buildingSprites addObject:Build];
+                                            NSLog(@"bullid tag : %d",Build.tag);
                                            [self addChild:Build z:3];
                                             
                                             
@@ -198,7 +198,7 @@
                             }];
                             
                             
-                        }
+                        
                         
                     }];
                     
@@ -346,12 +346,12 @@
 //删除一个建筑
 -(void)delete:(id)sender
 {
-    NSLog(@"1.%@",selSprite);
-    NSLog(@"2.%@",[self getChildByTag:selSprite.tag]);
+    NSLog(@"1.%@ tag:%d",selSprite,selSprite.tag);
     
     [self removeChildByTag:103 cleanup:YES];
     
-    [self removeChildByTag:selSprite.tag  cleanup:YES];
+    [selSprite removeFromParentAndCleanup:YES];
+    
     
     NSLog(@"3.%@",[self getChildByTag:selSprite.tag]);
     
@@ -370,7 +370,7 @@
     }];
 
     
-    
+    NSLog(@"delete succ");
     
 }
 -(void)upgrade:(id)sender
