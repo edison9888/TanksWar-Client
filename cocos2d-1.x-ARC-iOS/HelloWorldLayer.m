@@ -30,8 +30,6 @@
 	// return the scene
 	return scene;
 }
-
-
 // on "init" you need to initialize your instance
 -(id) init
 {
@@ -41,10 +39,12 @@
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
                
-        
+        playerResource=[[Resources alloc] init];
+        [playerResource initialazation];
         CGSize size = [[CCDirector sharedDirector] winSize];
         tagSprites=[[NSMutableArray alloc] init];   
        buildingSprites=[[NSMutableArray alloc] init];
+        
 		// create and initialize a Label
 		//CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello World" fontName:@"Marker Felt" fontSize:64];
         CCSprite *BackGround=[CCSprite spriteWithFile:@"background.png" rect:CGRectMake(0, 0, 1024, 768)];
@@ -81,20 +81,29 @@
         }
         
         
+        label=[CCLabelTTF labelWithString:@"0" dimensions:CGSizeMake(100, 100) alignment: UIViewAnimationCurveEaseIn fontName:@"Arial" fontSize:16];
+        [label setString:[NSString stringWithFormat:@"石油：%i\n粮食：%i\n钢铁：%i\n锡矿：%i",playerResource.Fuel,playerResource.Crop,playerResource.Steel,playerResource.Xi]];
+        label.position=ccp(120, 670);
+        [self addChild:label z:2 tag:101];
         
-        
-        
-        
+        [CCMenuItemFont setFontName:@"Marker Felt"];
+        [CCMenuItemFont setFontSize:40  ];
+        CCMenuItemFont *militaryArea=[CCMenuItemFont itemFromString:@"资源区" target:self selector:@selector(sceneTransition:) ];
+    
+        CCMenu *changeScene=[CCMenu menuWithItems:militaryArea, nil];
+        [changeScene alignItemsHorizontally];
+        [changeScene setPosition:ccp(800, 670)];
+        [self addChild:changeScene z:2 tag:102];
          [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
         
-        
+        //[self schedule:@selector(addup) interval:1];
+        //[self schedule:@selector(labelOfNum) interval:1.5];
         
 
 	}
 	return self;
  
 }
-
 -(BOOL) initPomelo
 {
     //初始化pomelo
@@ -106,7 +115,6 @@
         return  FALSE;
     }
 }
-
 -(void)connectToPomelo
 {
     //连接gate服务器得到分配的connect服务器
@@ -151,6 +159,7 @@
                                     NSNumber *xx = [resource objectForKey:@"pointx"];
                                     NSNumber *yy = [resource objectForKey:@"pointy"];
                                     NSString *pngg = [resource objectForKey:@"png"];
+                                    NSString *resid = [resource objectForKey:@"id"];
                                     CGPoint thep = CGPointMake( [xx floatValue],  [yy floatValue]);
                                     
                                     for (CCSprite *sprite in tagSprites)
@@ -164,11 +173,18 @@
                                             
                                             CCSprite *Build=[CCSprite spriteWithFile:pngg];
                                             
-                                            [buildingSprites addObject:Build];
+                                            
                                             
                                             Build.position=thep;
+                                            Build.tag = [resid intValue];
+                                           [buildingSprites addObject:Build];
+                                           [self addChild:Build z:3];
                                             
-                                            [self addChild:Build z:3];
+                                            
+                                            if ([resid intValue] >maxid) {
+                                                maxid = [resid intValue];
+                                            }
+                                            
                                             
                                         }
                                     }
@@ -211,6 +227,9 @@
 {
     for (CCSprite *sprite in buildingSprites) {
         if (CGRectContainsPoint(sprite.boundingBox, point)) {
+            NSLog(@"invoke");
+            selSprite=sprite;
+            [self updateBuilding];
             return;
         }
     }
@@ -223,6 +242,18 @@
             return;
         }
     }
+}
+-(void)updateBuilding
+{
+    //self.isTouchEnabled=NO;
+    [CCMenuItemFont setFontName:@"Marker Felt"];
+    [CCMenuItemFont setFontSize:30];
+    CCMenuItemFont  *Delete=[CCMenuItemFont itemFromString:@"拆除" target:self selector:@selector(delete:)];
+    CCMenuItemFont *upGrade=[CCMenuItemFont itemFromString:@"升级" target:self selector:@selector(upgrade:)];
+    CCMenu *menu=[CCMenu menuWithItems:Delete,upGrade,nil];
+    [menu setPosition:ccp(selSprite.position.x+50, selSprite.position.y-50)];
+    [menu alignItemsHorizontally];
+    [self addChild:menu z:3 tag:103];
 }
 -(void) ChoicePanel
 {
@@ -240,6 +271,7 @@
     [menu setPosition:ccp(size.width/2, size.height/2)];
     [self addChild:menu z:4 tag:4];
 }
+//选择建筑1
 -(void)Choicemenu1:sender
 {
     [self removeChildByTag:4 cleanup:YES];
@@ -248,14 +280,17 @@
     CCSprite *Build=[CCSprite spriteWithFile:@"building1.png"];
     [buildingSprites addObject:Build];
     Build.position=selSprite.position;
+    //把最大的maxid+1之后赋值给这个建筑，为了和数据库同步。
+    Build.tag = ++maxid;
+    
+    
     [self addChild:Build z:3];
     
     CGPoint myp = Build.position;
     [self saveToServer:&myp withPng:@"building1.png"];
     
+    
 }
-
-
 -(void)Choicemenu2:sender
 {
     [self removeChildByTag:4 cleanup:YES];
@@ -264,13 +299,13 @@
     CCSprite *Build=[CCSprite spriteWithFile:@"building2.png"];
     [buildingSprites addObject:Build];
     Build.position=selSprite.position;
+    Build.tag = ++maxid;
     [self addChild:Build z:3];
     
     CGPoint myp = Build.position;
     [self saveToServer:&myp withPng:@"building2.png"];
     
 }
-
 -(void)saveToServer:(CGPoint *)point withPng:(NSString *)png
 {
     NSLog(@"invoke");
@@ -303,23 +338,61 @@
     
     
 }
-
-
-
-
 -(void) labelOfNum
 {
-    CCLabelTTF  *label=[CCLabelTTF labelWithString:@"0" dimensions:CGSizeMake(100, 100) alignment: UIViewAnimationCurveEaseIn fontName:@"Arial" fontSize:32];
-    [label setString:[NSString stringWithFormat:@"%i %i",tagSprites.count,buildingSprites.count]];
-    label.position=ccp(100, 100);
-    [self addChild:label z:2 tag:101];
-}
-// on "dealloc" you need to release all your retained objects
--(void) dealloc
-{
    
+    [label setString:[NSString stringWithFormat:@"石油：%i\n粮食：%i\n钢铁：%i\n锡矿：%i",playerResource.Fuel,playerResource.Crop,playerResource.Steel,playerResource.Xi]];
+}
+//删除一个建筑
+-(void)delete:(id)sender
+{
+    NSLog(@"1.%@",selSprite);
+    NSLog(@"2.%@",[self getChildByTag:selSprite.tag]);
+    
+    [self removeChildByTag:103 cleanup:YES];
+    
+    [self removeChildByTag:selSprite.tag  cleanup:YES];
+    
+    NSLog(@"3.%@",[self getChildByTag:selSprite.tag]);
+    
+    [buildingSprites removeObject:selSprite];
+    NSNumber *thetag = [NSNumber numberWithInt: selSprite.tag];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            thetag, @"id",
+                            nil];
+    [pomelo requestWithRoute:@"connector.entryHandler.deleteArchitecture" andParams:params andCallback:^(NSDictionary *result){
+       
+            NSLog(@"删除成功");
+            
+            
+        
+        
+    }];
+
+    
+    
     
 }
+-(void)upgrade:(id)sender
+{
+    [self removeChildByTag:103 cleanup:YES];
+    //[self removeChild:selSprite cleanup:YES];
+}
+-(void)sceneTransition:(id)sender
+{
+    CCTransitionFade *tran=[CCTransitionFade transitionWithDuration:2 scene:[ResourceScene scene] withColor:ccWHITE];
+    [[CCDirector sharedDirector] replaceScene:tran];
+}
+
+-(void)addup:(id)sender
+{
+    [playerResource setCrop:50];
+    [playerResource setFuel:50];
+    [playerResource setSteel:50];
+    [playerResource setXi:50];
+}
+// on "dealloc" you need to release all your retained objects
+
 
 
 

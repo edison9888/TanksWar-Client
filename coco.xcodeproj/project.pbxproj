@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E075F0416AF1E8A00ABD9D0 /* Resources.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E075F0216AF1E8A00ABD9D0 /* Resources.h */; };
+		0E075F0516AF1E8A00ABD9D0 /* Resources.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E075F0316AF1E8A00ABD9D0 /* Resources.m */; };
+		0E075F0616AF1E8A00ABD9D0 /* Resources.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E075F0316AF1E8A00ABD9D0 /* Resources.m */; };
+		0E0DE17E16AF6AAC007AFF32 /* ResourceScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0DE17D16AF6AAC007AFF32 /* ResourceScene.m */; };
+		0E0DE18616AF713F007AFF32 /* tags.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E0DE18516AF713F007AFF32 /* tags.png */; };
 		2A103663169AE87F001311F1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A103662169AE87F001311F1 /* Security.framework */; };
 		2A103665169AE885001311F1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A103664169AE885001311F1 /* CFNetwork.framework */; };
 		2A103667169AE890001311F1 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A103666169AE890001311F1 /* libicucore.dylib */; };
@@ -197,7 +202,6 @@
 		AC4C7E3E169AADA8007ECFC4 /* menu2.png in Resources */ = {isa = PBXBuildFile; fileRef = AC4C7E3A169AADA8007ECFC4 /* menu2.png */; };
 		AC4C7E41169AAF76007ECFC4 /* building1.png in Resources */ = {isa = PBXBuildFile; fileRef = AC4C7E3F169AAF75007ECFC4 /* building1.png */; };
 		AC4C7E42169AAF76007ECFC4 /* building2.png in Resources */ = {isa = PBXBuildFile; fileRef = AC4C7E40169AAF76007ECFC4 /* building2.png */; };
-		AC4C7E44169AB2DE007ECFC4 /* tags.png in Resources */ = {isa = PBXBuildFile; fileRef = AC4C7E43169AB2DE007ECFC4 /* tags.png */; };
 		DC087ED315BDA9460044A820 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC087ED215BDA9460044A820 /* QuartzCore.framework */; };
 		DC087ED515BDA9460044A820 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC087ED415BDA9460044A820 /* OpenGLES.framework */; };
 		DC087ED715BDA9470044A820 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC087ED615BDA9460044A820 /* OpenAL.framework */; };
@@ -410,6 +414,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E075F0216AF1E8A00ABD9D0 /* Resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resources.h; sourceTree = "<group>"; };
+		0E075F0316AF1E8A00ABD9D0 /* Resources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resources.m; sourceTree = "<group>"; };
+		0E0DE17C16AF6AAC007AFF32 /* ResourceScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceScene.h; sourceTree = "<group>"; };
+		0E0DE17D16AF6AAC007AFF32 /* ResourceScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceScene.m; sourceTree = "<group>"; };
+		0E0DE18516AF713F007AFF32 /* tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tags.png; sourceTree = "<group>"; };
 		2A103662169AE87F001311F1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		2A103664169AE885001311F1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		2A103666169AE890001311F1 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
@@ -612,7 +621,6 @@
 		AC4C7E3A169AADA8007ECFC4 /* menu2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu2.png; path = ../menu2.png; sourceTree = "<group>"; };
 		AC4C7E3F169AAF75007ECFC4 /* building1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = building1.png; path = ../building1.png; sourceTree = "<group>"; };
 		AC4C7E40169AAF76007ECFC4 /* building2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = building2.png; path = ../building2.png; sourceTree = "<group>"; };
-		AC4C7E43169AB2DE007ECFC4 /* tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tags.png; path = ../tags.png; sourceTree = "<group>"; };
 		DC087ECE15BDA9460044A820 /* coco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = coco.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC087ED215BDA9460044A820 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DC087ED415BDA9460044A820 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1312,6 +1320,10 @@
 				DC08803D15BDA94A0044A820 /* HelloWorldLayer.h */,
 				DC08803E15BDA94A0044A820 /* HelloWorldLayer.m */,
 				DC08804015BDA94A0044A820 /* GameConfig.h */,
+				0E0DE17C16AF6AAC007AFF32 /* ResourceScene.h */,
+				0E0DE17D16AF6AAC007AFF32 /* ResourceScene.m */,
+				0E075F0216AF1E8A00ABD9D0 /* Resources.h */,
+				0E075F0316AF1E8A00ABD9D0 /* Resources.m */,
 				DC08805615BDA9820044A820 /* libs */,
 				DC087EE315BDA9470044A820 /* Resources */,
 				DC08803315BDA94A0044A820 /* Supporting Files */,
@@ -1322,7 +1334,7 @@
 		DC087EE315BDA9470044A820 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				AC4C7E43169AB2DE007ECFC4 /* tags.png */,
+				0E0DE18516AF713F007AFF32 /* tags.png */,
 				AC4C7E3F169AAF75007ECFC4 /* building1.png */,
 				AC4C7E40169AAF76007ECFC4 /* building2.png */,
 				AC4C7E37169AADA6007ECFC4 /* background.png */,
@@ -1714,6 +1726,7 @@
 				DC0881EE15BDA9820044A820 /* ZAttributedString.h in Headers */,
 				DC0881F015BDA9820044A820 /* ZAttributedStringPrivate.h in Headers */,
 				DC0881F115BDA9820044A820 /* ZFont.h in Headers */,
+				0E075F0416AF1E8A00ABD9D0 /* Resources.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1971,7 +1984,7 @@
 				AC4C7E3E169AADA8007ECFC4 /* menu2.png in Resources */,
 				AC4C7E41169AAF76007ECFC4 /* building1.png in Resources */,
 				AC4C7E42169AAF76007ECFC4 /* building2.png in Resources */,
-				AC4C7E44169AB2DE007ECFC4 /* tags.png in Resources */,
+				0E0DE18616AF713F007AFF32 /* tags.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1996,6 +2009,8 @@
 				2A103689169AEB55001311F1 /* SocketIOPacket.m in Sources */,
 				2A10368A169AEB55001311F1 /* SocketIOTransportWebsocket.m in Sources */,
 				2A10368B169AEB55001311F1 /* SocketIOTransportXHR.m in Sources */,
+				0E075F0516AF1E8A00ABD9D0 /* Resources.m in Sources */,
+				0E0DE17E16AF6AAC007AFF32 /* ResourceScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2089,6 +2104,7 @@
 				DC0881ED15BDA9820044A820 /* FontManager.m in Sources */,
 				DC0881EF15BDA9820044A820 /* ZAttributedString.m in Sources */,
 				DC0881F215BDA9820044A820 /* ZFont.m in Sources */,
+				0E075F0616AF1E8A00ABD9D0 /* Resources.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
