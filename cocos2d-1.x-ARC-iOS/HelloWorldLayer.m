@@ -136,10 +136,6 @@
                                             channel, @"rid",
                                             nil];
                     [p requestWithRoute:@"connector.entryHandler.enter" andParams:params andCallback:^(NSDictionary *result){
-                        NSArray *userList = [result objectForKey:@"users"];
-                       
-                            
-                            
                             NSDictionary *params2 = [NSDictionary dictionaryWithObjectsAndKeys:
                                                      @"military", @"category",
                                                      nil];
@@ -158,6 +154,7 @@
                                     NSNumber *yy = [resource objectForKey:@"pointy"];
                                     NSString *pngg = [resource objectForKey:@"png"];
                                     NSString *resid = [resource objectForKey:@"id"];
+                                    NSNumber *alevel = [resource objectForKey:@"alevel"];
                                     CGPoint thep = CGPointMake( [xx floatValue],  [yy floatValue]);
                                     
                                     for (CCSprite *sprite in tagSprites)
@@ -173,11 +170,18 @@
                                             CCSprite *Build=[CCSprite spriteWithFile:pngg];
                                             
                                             
+                                            //TODO
+                                            //美术（毛）把每个建筑做一张带等级的图：1-9级，第10级图像另作
+                                            //开发:（孟）根据alevel字段的值判断渲染那张png。比如alebel=1,渲染building1.
+                                            //也可不用这样，直接在png中保存当前等级的图，直接渲染，alevel字段暂时搁置，用于判断升级建筑的时候用
+                                           
                                             
                                             Build.position=thep;
                                             Build.tag = [resid intValue];
                                            [buildingSprites addObject:Build];
                                             NSLog(@"bullid tag : %d",Build.tag);
+                                            
+                                            
                                            [self addChild:Build z:3];
                                             
                                             
@@ -323,6 +327,7 @@
                                 myy, @"pointy",
                                 png,@"png",
                                 @"military",@"category",
+                                @"1",@"alevel",
                                 nil];
         [pomelo requestWithRoute:@"connector.entryHandler.addArchitecture" andParams:params andCallback:^(NSDictionary *result){
             NSArray *userList = [result objectForKey:@"users"];
@@ -377,6 +382,20 @@
 {
     [self removeChildByTag:103 cleanup:YES];
     //[self removeChild:selSprite cleanup:YES];
+    NSNumber *archID =   [NSNumber numberWithInt:selSprite.tag];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                             archID,@"id",
+                             nil];
+    
+    [pomelo requestWithRoute:@"connector.entryHandler.increaseArchitectureLevel" andParams:params andCallback:^(NSDictionary *result){
+        
+        NSLog(@"等级提升成功");
+        //TODO
+        //修改精灵的png文件，文件名+1
+        
+        
+        
+    }];
 }
 -(void)sceneTransition:(id)sender
 {
