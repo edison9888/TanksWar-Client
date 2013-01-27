@@ -14,8 +14,8 @@
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
 @synthesize pomelo;
-@synthesize name;
-@synthesize channel;
+@synthesize username;
+@synthesize password;
 +(CCScene *) scene
 {
 	// 'scene' is an autorelease object.
@@ -70,8 +70,8 @@
         
         
         //pomelo
-        name = @"chenyl107";
-        channel = @"junshi";
+        username = @"chenyl107";
+        password = @"junshi";
         
         
         if ([self initPomelo]) {
@@ -120,7 +120,7 @@
     //连接gate服务器得到分配的connect服务器
     
     [pomelo connectToHost:@"127.0.0.1" onPort:3014 withCallback:^(Pomelo *p){
-        NSDictionary *params = [NSDictionary dictionaryWithObject:@"chenyl107" forKey:@"uid"];
+        NSDictionary *params = [NSDictionary dictionaryWithObject:@"chenyl107" forKey:@"uid"];//uid用于分配connector服务器
         [pomelo requestWithRoute:@"gate.gateHandler.queryEntry" andParams:params andCallback:^(NSDictionary *result){
             
             [pomelo disconnectWithCallback:^(Pomelo *p){
@@ -132,8 +132,8 @@
                     
                     
                     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                                            name, @"username",
-                                            channel, @"rid",
+                                            username, @"username",
+                                            password, @"password",
                                             nil];
                     [p requestWithRoute:@"connector.entryHandler.enter" andParams:params andCallback:^(NSDictionary *result){
                             NSDictionary *params2 = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -321,8 +321,8 @@
 
     
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                                name, @"username",
-                                channel, @"rid",
+                                username, @"username",
+                                password, @"password",
                                 myx, @"pointx",
                                 myy, @"pointy",
                                 png,@"png",

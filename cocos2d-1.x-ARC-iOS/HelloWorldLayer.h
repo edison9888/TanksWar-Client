@@ -24,8 +24,8 @@
     Resources *playerResource;
     NSString *host;//connection服务器的host
     NSInteger port;//connection服务器的port
-    NSString *name;//当前用户的用户名
-    NSString *channel;//频道
+    NSString *username;//当前用户的用户名
+    NSString *password;//密码
     NSArray *resources;
     CCLabelTTF *label;
     int maxid;
@@ -35,6 +35,6 @@
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 @property (weak, nonatomic) Pomelo *pomelo;
-@property(strong,nonatomic)NSString *name;
-@property(strong,nonatomic)NSString *channel;
+@property(strong,nonatomic)NSString *username;
+@property(strong,nonatomic)NSString *password;
 @end
