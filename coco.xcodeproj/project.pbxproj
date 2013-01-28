@@ -2156,10 +2156,16 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cocos2d-1.x-ARC-iOS/Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					"COCOS2D_DEBUG=1",
+					"DEBUG=1",
+					"OS_OBJECT_USE_OBJC_RETAIN_RELEASE=0",
+				);
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "cocos2d-1.x-ARC-iOS/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = coco;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -2175,10 +2181,14 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cocos2d-1.x-ARC-iOS/Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					NDEBUG,
+					"OS_OBJECT_USE_OBJC_RETAIN_RELEASE=0",
+				);
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "cocos2d-1.x-ARC-iOS/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = coco;
 				TARGETED_DEVICE_FAMILY = 2;
